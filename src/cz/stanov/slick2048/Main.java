@@ -62,6 +62,7 @@ public class Main extends BasicGame {
 
         if (tileWasMoved) {
             gameBoardManipulator.generateNewTiles();
+            gameBoardManipulator.markAllTilesAsNotMerged();
         }
     }
 

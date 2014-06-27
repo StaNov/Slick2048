@@ -18,7 +18,7 @@ public class GameBoardCreator {
         for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
                 int tileValue = Integer.valueOf(tileValues[y*BOARD_SIZE + x]);
-                result.setTileAt(x, y, Tile.getByValue(tileValue));
+                result.setTileAt(x, y, new Tile(tileValue));
             }
         }
 

@@ -29,7 +29,7 @@ public class Board {
         for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
 
-                if (this.board[x][y] != that.board[x][y]) {
+                if (! this.board[x][y].equals(that.board[x][y])) {
                     return false;
                 }
             }

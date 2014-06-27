@@ -31,7 +31,7 @@ public class GameBoardManipulator {
     private void fillBoardWithEmptyTiles(Board board) {
         for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
-                board.setTileAt(x, y, Tile.T_EMPTY);
+                board.setTileAt(x, y, Tile.emptyTile());
             }
         }
     }
@@ -42,9 +42,17 @@ public class GameBoardManipulator {
             int y = random.nextInt(BOARD_SIZE);
 
             if (tileIsEmpty(x, y)) {
-                board.setTileAt(x,y, Tile.T_2);
+                board.setTileAt(x,y, new Tile());
                 break;
                 // TODO přepsat bez breaku
+            }
+        }
+    }
+
+    public void markAllTilesAsNotMerged() {
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                board.getTileAt(x,y).setAlreadyMerged(false);
             }
         }
     }
@@ -132,27 +140,28 @@ public class GameBoardManipulator {
         Tile fromTile = board.getTileAt(fromX, fromY);
         Tile toTile = board.getTileAt(toX, toY);
 
-        if (toTile == Tile.T_EMPTY) {
+        if (toTile.isEmpty()) {
             board.setTileAt(toX,toY, fromTile);
-            board.setTileAt(fromX,fromY, Tile.T_EMPTY);
+            board.setTileAt(fromX,fromY, Tile.emptyTile());
+            tryMoveTileFromTo(toX, toY, toX + (toX - fromX), toY + (toY - fromY));
 
-        } else if (toTile == fromTile) {
-            board.setTileAt(toX,toY, Tile.getByValue(toTile.getValue() * 2));
-            board.setTileAt(fromX,fromY, Tile.T_EMPTY);
+        } else if (toTile.equals(fromTile) && ! toTile.isAlreadyMerged()) {
+            Tile mergedTile = new Tile(toTile.getValue() * 2);
+            mergedTile.setAlreadyMerged(true);
+            board.setTileAt(toX,toY, mergedTile);
+            board.setTileAt(fromX,fromY, Tile.emptyTile());
 
         } else {
             return false;
         }
 
-        tryMoveTileFromTo(toX, toY, toX + (toX - fromX), toY + (toY - fromY));
-
         return true;
     }
 
-    private boolean tileIsEmpty(int x, int y) {
-        return board.getTileAt(x,y) == Tile.T_EMPTY;
-    }
 
+    private boolean tileIsEmpty(int x, int y) {
+        return board.getTileAt(x,y).isEmpty();
+    }
 
     private boolean tileIsInMostRightColumn(int xCoordinate) {
         return xCoordinate == BOARD_SIZE - 1;

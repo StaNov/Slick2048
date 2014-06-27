@@ -1,46 +1,58 @@
 package cz.stanov.slick2048.gameobject;
 
-import org.newdawn.slick.Color;
+public class Tile {
 
-public enum Tile {
+    public static final int DEFAULT_INITIAL_TILE_VALUE = 2;
 
-    T_EMPTY(0, Color.lightGray),
-    T_2(2, Color.magenta),
-    T_4(4, Color.green),
-    T_8(8, Color.blue),
-    T_16(16, Color.red),
-    T_32(32, Color.blue),
-    T_64(64, Color.blue),
-    T_128(128, Color.blue),
-    T_256(256, Color.blue),
-    T_512(512, Color.blue),
-    T_1024(1024, Color.blue),
-    T_2048(2048, Color.blue),
-    T_4096(4096, Color.blue);
+    private int value;
+    private boolean alreadyMerged;
 
-    private int value = 2;
-    private Color color = Color.white;
+    public Tile() {
+        this.value = DEFAULT_INITIAL_TILE_VALUE;
+    }
 
-    private Tile(int value, Color color) {
+    public Tile(int value) {
         this.value = value;
-        this.color = color;
+        this.alreadyMerged = false;
+    }
+
+    public static Tile emptyTile() {
+        return new Tile(0);
+    }
+
+    public boolean isEmpty() {
+        return value == 0;
     }
 
     public int getValue() {
         return value;
     }
 
-    public Color getColor() {
-        return color;
+    public void setValue(int value) {
+        this.value = value;
     }
 
-    public static Tile getByValue(int value) {
-        for (Tile t : values()) {
-            if (t.value == value) {
-                return t;
-            }
-        }
+    public boolean isAlreadyMerged() {
+        return alreadyMerged;
+    }
 
-        return null;
+    public void setAlreadyMerged(boolean alreadyMerged) {
+        this.alreadyMerged = alreadyMerged;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tile tile = (Tile) o;
+
+        return value == tile.value;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return value;
     }
 }
