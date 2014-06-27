@@ -67,15 +67,54 @@ public class GameBoardManipulator {
     }
 
     public boolean moveLeft() {
-        return false;
+        boolean anyTileWasMoved = false;
+
+        for (int x = 1; x < BOARD_SIZE; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                boolean tileWasMoved = tryMoveTileFromTo(x, y, x-1, y);
+
+                if (tileWasMoved) {
+                    anyTileWasMoved = true;
+                }
+
+            }
+        }
+
+        return anyTileWasMoved;
     }
 
     public boolean moveUp() {
-        return false;
+        boolean anyTileWasMoved = false;
+
+        for (int y = 1; y < BOARD_SIZE; y++) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                boolean tileWasMoved = tryMoveTileFromTo(x, y, x, y-1);
+
+                if (tileWasMoved) {
+                    anyTileWasMoved = true;
+                }
+
+            }
+        }
+
+        return anyTileWasMoved;
     }
 
     public boolean moveDown() {
-        return false;
+        boolean anyTileWasMoved = false;
+
+        for (int y = BOARD_SIZE - 2; y >= 0; y--) {
+            for (int x = 0; x < BOARD_SIZE; x++) {
+                boolean tileWasMoved = tryMoveTileFromTo(x, y, x, y+1);
+
+                if (tileWasMoved) {
+                    anyTileWasMoved = true;
+                }
+
+            }
+        }
+
+        return anyTileWasMoved;
     }
 
     private boolean tryMoveTileFromTo(int fromX, int fromY, int toX, int toY) {
