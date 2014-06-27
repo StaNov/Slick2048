@@ -10,12 +10,8 @@ import static org.junit.Assert.assertEquals;
 
 public class GameBoardManipulatorTest {
     
-    private GameBoardCreator boardCreator;
-    
-    @Before
-    public void setUp() {
-        boardCreator = new GameBoardCreator();
-    }
+    private GameBoardCreator boardCreator = new GameBoardCreator();
+
 
     @Test
     public void testMoveRight_moveNothing() throws Exception {

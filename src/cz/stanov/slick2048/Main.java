@@ -29,6 +29,7 @@ public class Main extends BasicGame {
         board = new Board();
 
         gameBoardManipulator = new GameBoardManipulator(board);
+        gameBoardManipulator.init();
     }
 
     @Override
@@ -42,19 +43,25 @@ public class Main extends BasicGame {
 
     @Override
     public void keyPressed(int key, char c) {
+        boolean tileWasMoved = false;
+
         switch (key) {
             case KEY_RIGHT:
-                gameBoardManipulator.moveRight();
+                tileWasMoved = gameBoardManipulator.moveRight();
                 break;
             case KEY_LEFT:
-                gameBoardManipulator.moveLeft();
+                tileWasMoved = gameBoardManipulator.moveLeft();
                 break;
             case KEY_UP:
-                gameBoardManipulator.moveUp();
+                tileWasMoved = gameBoardManipulator.moveUp();
                 break;
             case KEY_DOWN:
-                gameBoardManipulator.moveDown();
+                tileWasMoved = gameBoardManipulator.moveDown();
                 break;
+        }
+
+        if (tileWasMoved) {
+            gameBoardManipulator.generateNewTiles();
         }
     }
 

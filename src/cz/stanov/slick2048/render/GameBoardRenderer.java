@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 
 import static cz.stanov.slick2048.Constants.*;
 
+// TODO rozdělit na GameBoardGraphics a jejich renderera, udělat tam metodu isMoving, která bude říkat, jesi už přesuny proběhly
 public class GameBoardRenderer {
 
     private TileRenderer tileRenderer;
