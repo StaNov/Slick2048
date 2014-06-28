@@ -16,14 +16,17 @@ public class TileRenderer {
     // TODO vyhodit jinam
     public static final Map<Integer, Color> colors = new HashMap<Integer, Color>();
 
+    private TileRenderPropertiesGetter propertiesGetter;
+    private FontGetter fontGetter;
+
     private Graphics g;
-    private TrueTypeFont tileTextFont;
     private Color tileTextColor;
 
     public TileRenderer(Graphics g) {
         this.g = g;
-        this.tileTextFont = new TrueTypeFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE), true);
         this.tileTextColor = new Color(0,0,0, TILE_TEXT_TRANSPARENCY);
+        this.propertiesGetter = new TileRenderPropertiesGetter();
+        this.fontGetter = new FontGetter();
     }
 
     public void renderTile(Tile tile, int x, int y) {
@@ -32,11 +35,11 @@ public class TileRenderer {
     }
 
     private void drawBackground(Tile tile, int x, int y) {
-        g.setColor(colors.get(tile.getValue()));
-        g.fillRect(x * TILE_SIZE_PIXELS + (x+1) * TILE_MARGIN_PIXELS,
-                   y * TILE_SIZE_PIXELS + (y+1) * TILE_MARGIN_PIXELS,
-                   TILE_SIZE_PIXELS,
-                   TILE_SIZE_PIXELS);
+        g.setColor(backgroundColor(tile));
+        g.fillRect(x * TILE_SIZE_PIXELS + (x + 1) * TILE_MARGIN_PIXELS,
+                y * TILE_SIZE_PIXELS + (y + 1) * TILE_MARGIN_PIXELS,
+                TILE_SIZE_PIXELS,
+                TILE_SIZE_PIXELS);
     }
 
     private void drawText(Tile tile, int x, int y) {
@@ -46,7 +49,7 @@ public class TileRenderer {
         }
 
         g.setColor(tileTextColor);
-        g.setFont(tileTextFont);
+        g.setFont(fontGetter.getFont(fontSize(tile)));
         drawTileValue(tile, x, y);
     }
 
@@ -56,23 +59,16 @@ public class TileRenderer {
 
         g.drawString(
                 tile.getValue() + "",
-                x* TILE_SIZE_PIXELS + (x+1)* TILE_MARGIN_PIXELS + (TILE_SIZE_PIXELS - valueTextWidth) / 2,
-                y* TILE_SIZE_PIXELS + (y+1)* TILE_MARGIN_PIXELS + (TILE_SIZE_PIXELS - valueTextHeight) / 2);
+                x * TILE_SIZE_PIXELS + (x + 1) * TILE_MARGIN_PIXELS + (TILE_SIZE_PIXELS - valueTextWidth) / 2,
+                y * TILE_SIZE_PIXELS + (y + 1) * TILE_MARGIN_PIXELS + (TILE_SIZE_PIXELS - valueTextHeight) / 2);
     }
 
-    static {
-        colors.put(0, Color.gray);
-        colors.put(2, Color.blue);
-        colors.put(4, Color.green);
-        colors.put(8, Color.pink);
-        colors.put(16, Color.red);
-        colors.put(32, Color.lightGray);
-        colors.put(64, Color.cyan);
-        colors.put(128, Color.magenta);
-        colors.put(256, Color.orange);
-        colors.put(512, Color.yellow);
-        colors.put(1024, Color.white);
-        colors.put(2048, Color.blue);
-        colors.put(4096, Color.pink);
+    private Color backgroundColor(Tile tile) {
+        return propertiesGetter.getProperties(tile).getBackgroundColor();
     }
+
+    private int fontSize(Tile tile) {
+        return propertiesGetter.getProperties(tile).getFontSize();
+    }
+
 }
