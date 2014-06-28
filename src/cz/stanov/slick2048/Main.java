@@ -25,8 +25,8 @@ public class Main extends BasicGame {
 
     @Override
     public void init(GameContainer gc) throws SlickException {
-        renderer = new GameBoardRenderer(gc.getGraphics());
         board = new Board();
+        renderer = new GameBoardRenderer(gc.getGraphics(), board);
 
         gameBoardManipulator = new GameBoardManipulator(board);
         gameBoardManipulator.init();
@@ -38,7 +38,7 @@ public class Main extends BasicGame {
 
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
-        renderer.render(board);
+        renderer.render();
     }
 
     @Override
