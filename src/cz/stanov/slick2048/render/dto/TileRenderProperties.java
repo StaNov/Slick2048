@@ -1,4 +1,4 @@
-package cz.stanov.slick2048.render;
+package cz.stanov.slick2048.render.dto;
 
 import org.newdawn.slick.Color;
 

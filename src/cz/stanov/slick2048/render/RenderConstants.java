@@ -7,8 +7,7 @@ public class RenderConstants {
     public static final int TILE_SIZE_PIXELS = 100;
     public static final int TILE_MARGIN_PIXELS = 10;
 
-    public static final String FONT_NAME = "Time New Roman";
-    public static final int FONT_SIZE = 60;
+    public static final String FONT_NAME = "Verdana";
     public static final int TILE_TEXT_TRANSPARENCY = 200;
 
     public static final Color BACKGROUND_COLOR = Color.darkGray;
@@ -27,16 +26,9 @@ public class RenderConstants {
     public static final Color TILE_COLOR_2048 = Color.blue;
     public static final Color TILE_COLOR_OTHER = Color.red;
 
-    public static final int TILE_FONT_SIZE_2 = 80;
-    public static final int TILE_FONT_SIZE_4 = 80;
-    public static final int TILE_FONT_SIZE_8 = 80;
-    public static final int TILE_FONT_SIZE_16 = 60;
-    public static final int TILE_FONT_SIZE_32 = 60;
-    public static final int TILE_FONT_SIZE_64 = 60;
-    public static final int TILE_FONT_SIZE_128 = 40;
-    public static final int TILE_FONT_SIZE_256 = 40;
-    public static final int TILE_FONT_SIZE_512 = 40;
-    public static final int TILE_FONT_SIZE_1024 = 20;
-    public static final int TILE_FONT_SIZE_2048 = 20;
+    public static final int TILE_FONT_SIZE_1_DIGIT = 70;
+    public static final int TILE_FONT_SIZE_2_DIGITS = 60;
+    public static final int TILE_FONT_SIZE_3_DIGITS = 40;
+    public static final int TILE_FONT_SIZE_4_DIGITS = 20;
     public static final int TILE_FONT_SIZE_OTHER = 20;
 }

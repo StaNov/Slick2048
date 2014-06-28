@@ -1,4 +1,4 @@
-package cz.stanov.slick2048.render;
+package cz.stanov.slick2048.render.dao;
 
 import org.newdawn.slick.TrueTypeFont;
 
@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static cz.stanov.slick2048.render.RenderConstants.FONT_NAME;
 
-public class FontGetter {
+public class FontDao {
 
     public TrueTypeFont getFont(int fontSize) {
         if (! FONTS.containsKey(fontSize)) {

@@ -1,11 +1,11 @@
 package cz.stanov.slick2048.render;
 
 import cz.stanov.slick2048.gameobject.Tile;
+import cz.stanov.slick2048.render.dao.FontDao;
+import cz.stanov.slick2048.render.dao.TileRenderPropertiesDao;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.TrueTypeFont;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,8 +16,8 @@ public class TileRenderer {
     // TODO vyhodit jinam
     public static final Map<Integer, Color> colors = new HashMap<Integer, Color>();
 
-    private TileRenderPropertiesGetter propertiesGetter;
-    private FontGetter fontGetter;
+    private TileRenderPropertiesDao propertiesGetter;
+    private FontDao fontDao;
 
     private Graphics g;
     private Color tileTextColor;
@@ -25,8 +25,8 @@ public class TileRenderer {
     public TileRenderer(Graphics g) {
         this.g = g;
         this.tileTextColor = new Color(0,0,0, TILE_TEXT_TRANSPARENCY);
-        this.propertiesGetter = new TileRenderPropertiesGetter();
-        this.fontGetter = new FontGetter();
+        this.propertiesGetter = new TileRenderPropertiesDao();
+        this.fontDao = new FontDao();
     }
 
     public void renderTile(Tile tile, int x, int y) {
@@ -49,7 +49,7 @@ public class TileRenderer {
         }
 
         g.setColor(tileTextColor);
-        g.setFont(fontGetter.getFont(fontSize(tile)));
+        g.setFont(fontDao.getFont(fontSize(tile)));
         drawTileValue(tile, x, y);
     }
 
