@@ -1,1 +1,12 @@
-This file was created by IntelliJ IDEA 12.1.7 for binding GitHub repository
+My implementation of 2048, originally implemented by Gabriele Cirulli: http://gabrielecirulli.github.io/2048/
+
+You need to set VM options to
+
+    -Djava.library.path=lib/natives-linux
+
+or
+    -Djava.library.path=lib/natives-windows
+
+There are two runnable classes - Main and RenderTest. Main is main game and RenderTest shows all kinds of tiles on screen.
+
+For creating production packages use JarSplice: http://ninjacave.com/jarsplice
