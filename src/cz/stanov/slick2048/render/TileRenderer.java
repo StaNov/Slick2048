@@ -6,15 +6,13 @@ import cz.stanov.slick2048.render.dao.TileRenderPropertiesDao;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
 import static cz.stanov.slick2048.render.RenderConstants.*;
 
 public class TileRenderer {
-
-    // TODO vyhodit jinam
-    public static final Map<Integer, Color> colors = new HashMap<Integer, Color>();
 
     private TileRenderPropertiesDao propertiesGetter;
     private FontDao fontDao;

@@ -4,10 +4,10 @@ package cz.stanov.slick2048.render;
 import org.newdawn.slick.Color;
 
 public class RenderConstants {
-    public static final int TILE_SIZE_PIXELS = 100;
+    public static final int TILE_SIZE_PIXELS = 120;
     public static final int TILE_MARGIN_PIXELS = 10;
 
-    public static final String FONT_NAME = "Verdana"; // TODO načítat font, teď je tam ten původní
+    public static final String FONT_NAME = "SansSerif";
     public static final int TILE_TEXT_TRANSPARENCY = 180;
 
     public static final Color BACKGROUND_COLOR = Color.darkGray;
@@ -28,7 +28,7 @@ public class RenderConstants {
 
     public static final int TILE_FONT_SIZE_1_DIGIT = 70;
     public static final int TILE_FONT_SIZE_2_DIGITS = 60;
-    public static final int TILE_FONT_SIZE_3_DIGITS = 40;
-    public static final int TILE_FONT_SIZE_4_DIGITS = 30;
-    public static final int TILE_FONT_SIZE_OTHER = 20;
+    public static final int TILE_FONT_SIZE_3_DIGITS = 50;
+    public static final int TILE_FONT_SIZE_4_DIGITS = 40;
+    public static final int TILE_FONT_SIZE_OTHER = 40;
 }
